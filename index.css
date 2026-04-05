@@ -188,104 +188,86 @@ h1, h2, h3 {
 .hero-visuals .polaroid:nth-child(1) { --rot: -5deg; position: relative; z-index: 2; }
 .hero-visuals .polaroid:nth-child(2) { --rot: 7deg; position: absolute; top: 40px; left: 150px; z-index: 1; }
 
-/* Packages */
-.packages {
-  background-color: var(--paper);
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.package-grid {
+/* Chat Grid - The New CTA */
+.chat-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
-.package-card {
+.chat-card {
   background: white;
-  padding: 3rem 2rem;
+  padding: 2rem;
   border: 1px solid #e2e8f0;
   text-align: center;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.package-card:hover {
-  transform: translateY(-10px);
-  border-color: var(--sun);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.package-card h3 {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.package-price {
-  font-size: 3rem;
-  font-weight: 800;
-  color: var(--sea);
-  margin-bottom: 1.5rem;
-}
-
-.package-card ul {
-  list-style: none;
-  margin-bottom: 2.5rem;
-  text-align: left;
-}
-
-.package-card ul li {
-  margin-bottom: 0.8rem;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-decoration: none;
+  color: var(--ink);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.package-card ul li::before {
-  content: "📍";
-  font-size: 0.9rem;
+.chat-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: var(--sea);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
 }
 
-/* Trust Section (Marquee or Staggered) */
-.trust-banner {
-  background-color: var(--ink);
-  color: white;
-  padding: 4rem 0;
-  text-align: center;
+.chat-card span {
+  font-weight: 800;
+  font-size: 1.1rem;
 }
 
-.trust-banner h2 {
+.chat-card i {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--sun);
 }
 
-.trust-banner .promise {
-  font-family: var(--font-title);
-  font-size: 2rem;
-  opacity: 0.9;
-}
+.chat-card.facebook { border-bottom: 4px solid #1877F2; }
+.chat-card.whatsapp { border-bottom: 4px solid #25D366; }
+.chat-card.telegram { border-bottom: 4px solid #0088CC; }
+.chat-card.zalo { border-bottom: 4px solid #0068FF; }
 
-/* Mobile Responsive */
+/* Mobile Responsive Enhancements */
 @media (max-width: 968px) {
   .hero-content {
     grid-template-columns: 1fr;
     text-align: center;
+    padding-bottom: 4rem;
   }
   
+  .hero h1 {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+
+  .why-us .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .why-us ul li {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .hero-visuals {
-    margin-top: 4rem;
-    height: 350px;
+    margin-top: 2rem;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
   }
   
   .hero-visuals .polaroid {
-    max-width: 200px;
+    max-width: 45%;
+    transform: rotate(0) !important;
   }
-  
-  .package-grid {
+
+  .chat-grid {
     grid-template-columns: 1fr;
   }
 }
