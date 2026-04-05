@@ -1,0 +1,291 @@
+/* 
+   Da Nang Local Insider - Digital Nomads & Tourists 
+   Vibe: Scrapbook, Authentic, Coastal, Trusted.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+  /* Coastal Palette - The Coastal Vibes of Da Nang */
+  --sea: #0EA5E9; /* Turquoise/Emerald Blue */
+  --sun: #F59E0B; /* Golden Sunshine */
+  --sand: #FEF3C7; /* Pale Sand */
+  --paper: #FAFAF8; /* Warm Paper White */
+  --ink: #1E293B; /* Deep Charcoal/Indigo */
+  --accent: #EA580C; /* Sunset Orange */
+  
+  --font-body: 'Outfit', sans-serif;
+  --font-title: 'Dancing Script', cursive;
+  
+  --shadow-polaroid: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* Paper grain texture */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* --- Layout Utils --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+/* --- Typography --- */
+h1, h2, h3 {
+  font-family: var(--font-body);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.script-font {
+  font-family: var(--font-title);
+  color: var(--sea);
+  font-size: 1.5em;
+  display: inline-block;
+  transform: rotate(-3deg);
+  margin-bottom: 0.5rem;
+}
+
+/* --- Torn Paper Effect --- */
+.torn-divider {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--paper);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.torn-top {
+  top: -30px;
+  clip-path: polygon(0% 15%, 5% 0%, 10% 25%, 15% 10%, 20% 30%, 25% 5%, 30% 20%, 35% 0%, 40% 15%, 45% 5%, 50% 25%, 55% 10%, 60% 30%, 65% 5%, 70% 20%, 75% 0%, 80% 15%, 85% 5%, 90% 25%, 95% 10%, 100% 30%, 100% 100%, 0% 100%);
+}
+
+.torn-bottom {
+  bottom: -30px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 95% 90%, 90% 75%, 85% 95%, 80% 85%, 75% 100%, 70% 80%, 65% 95%, 60% 70%, 55% 90%, 50% 75%, 45% 95%, 40% 85%, 35% 100%, 30% 80%, 25% 95%, 20% 70%, 15% 90%, 10% 75%, 5% 95%, 0% 85%);
+}
+
+/* --- Polaroid Effect --- */
+.polaroid {
+  background: white;
+  padding: 1rem 1rem 3rem 1rem;
+  box-shadow: var(--shadow-polaroid);
+  transform: rotate(var(--rot, 0deg));
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-block;
+  position: relative;
+}
+
+.polaroid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.05);
+  z-index: 20;
+}
+
+.polaroid::after {
+  content: attr(data-caption);
+  position: absolute;
+  bottom: 0.8rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  color: var(--ink);
+  opacity: 0.8;
+}
+
+/* --- Buttons --- */
+.cta-button {
+  background-color: var(--sun);
+  color: var(--ink);
+  border: none;
+  padding: 1.2rem 2.5rem;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--accent);
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--accent);
+}
+
+.cta-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 var(--accent);
+}
+
+/* --- Sections --- */
+
+/* Hero */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--sand);
+  padding-top: 100px;
+  overflow: hidden;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  max-width: 500px;
+}
+
+.hero-visuals {
+  position: relative;
+}
+
+.hero-visuals .polaroid:nth-child(1) { --rot: -5deg; position: relative; z-index: 2; }
+.hero-visuals .polaroid:nth-child(2) { --rot: 7deg; position: absolute; top: 40px; left: 150px; z-index: 1; }
+
+/* Packages */
+.packages {
+  background-color: var(--paper);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.package-card {
+  background: white;
+  padding: 3rem 2rem;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.package-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--sun);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.package-card h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.package-price {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--sea);
+  margin-bottom: 1.5rem;
+}
+
+.package-card ul {
+  list-style: none;
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.package-card ul li {
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.package-card ul li::before {
+  content: "📍";
+  font-size: 0.9rem;
+}
+
+/* Trust Section (Marquee or Staggered) */
+.trust-banner {
+  background-color: var(--ink);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.trust-banner h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--sun);
+}
+
+.trust-banner .promise {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  opacity: 0.9;
+}
+
+/* Mobile Responsive */
+@media (max-width: 968px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-visuals {
+    margin-top: 4rem;
+    height: 350px;
+  }
+  
+  .hero-visuals .polaroid {
+    max-width: 200px;
+  }
+  
+  .package-grid {
+    grid-template-columns: 1fr;
+  }
+}
